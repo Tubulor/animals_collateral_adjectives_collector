@@ -1,11 +1,12 @@
+import logging
 from jinja2 import Environment, FileSystemLoader, TemplateNotFound
 from pathlib import Path
 from typing import List, Dict
 from .models import Animal
-import logging
+from .constants import TEMPLATE_NAME
 
 logger = logging.getLogger(__name__)
-TEMPLATE_NAME = "results-template.html"
+
 
 def render_animal_table(data: Dict[str, List[Animal]], output_file: str):
     """

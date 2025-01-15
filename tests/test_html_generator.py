@@ -3,9 +3,9 @@ from pathlib import Path
 from animals_collateral_adjectives_collector import render_animal_table
 from animals_collateral_adjectives_collector.models import Animal
 
-class TestRenderAnimalTableWithRealTemplate(unittest.TestCase):
+class TestHtmlGenerator(unittest.TestCase):
     def test_render_animal_table_real_template(self):
-        # Mock data
+        # Mock data to render
         mock_data = {
             "canine": [Animal(name="Dog", data_url="/wiki/Dog", image_local_path="tmp/Dog.jpg")],
             "feline": [Animal(name="Cat", data_url="/wiki/Cat", image_local_path="tmp/Cat.jpg")],

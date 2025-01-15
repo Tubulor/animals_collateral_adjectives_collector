@@ -1,18 +1,10 @@
-import requests
-import os
+import requests, os, logging
 from bs4 import BeautifulSoup
-from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor, as_completed
-import logging
+from .constants import WIKIPEDIA_BASE_URL, TMP_DIR, HEADERS
+from .image_processing import process_images
 
 logger = logging.getLogger(__name__)
-
-WIKIPEDIA_BASE_URL = "https://en.wikipedia.org"
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
-TMP_DIR = PROJECT_ROOT / "tmp"
-HEADERS = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
-}
 
 
 def fetch_animal_images(collapsed_adj_map, max_workers=os.cpu_count() * 2):
@@ -54,7 +46,7 @@ def process_task(task):
     logger.info(f"Processing task: {task}")
     animal, url = task
     image_url = fetch_og_image(url)
-    return save_image(image_url, animal.name) if image_url else None
+    return process_images(image_url, animal.name) if image_url else None
 
 
 def fetch_og_image(url):
@@ -72,26 +64,4 @@ def fetch_og_image(url):
             return meta["content"] if meta else None # Extract the content attribute from the meta tag which contains the image url
     except Exception as e:
         logger.error(f"Error fetching og:image from {url}: {e}")
-    return None
-
-
-def save_image(image_url, animal_name):
-    """
-    Downloads and saves the image locally as a .jpg file.
-    Returns the local image path or None if the image could not be saved.
-    """
-    logger.info(f"Saving image for {animal_name}")
-    try:
-        filename = f"{animal_name.replace(' ', '_')}.jpg" # Replace spaces with underscores in the filename
-        file_path = TMP_DIR / filename # Create the full path to the file
-        response = requests.get(image_url, stream=True, headers=HEADERS)
-        if response.status_code == 200:
-            with open(file_path, "wb") as file:
-                for chunk in response.iter_content(1024):
-                    file.write(chunk)
-            return str(filename)
-        else:
-            logger.error(f"Failed to download image: {image_url} (Status: {response.status_code})")
-    except Exception as e:
-        logger.error(f"Error saving image {animal_name}: {e}")
     return None

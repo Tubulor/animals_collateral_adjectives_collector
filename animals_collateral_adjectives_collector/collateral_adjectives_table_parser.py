@@ -1,27 +1,8 @@
-import requests
 import logging
-from bs4 import BeautifulSoup
-from typing import List, Dict
 from .models import Animal
+from .constants import REQUIRED_TABLE_COLUMNS
 
-WIKIPEDIA_ANIMAL_NAMES_URL = "https://en.wikipedia.org/wiki/List_of_animal_names"
-TABLE_ATTRIBUTES = {"class": "wikitable sortable sticky-header"}
-REQUIRED_TABLE_COLUMNS = ["Animal", "Collateral adjective"]
 logger = logging.getLogger(__name__)
-
-def fetch_animal_table_body():
-    """
-    Fetches the table body with the specific attribute from the Wikipedia animal names page.
-    Returns the table body containing the animal data.
-    """
-    logger.info("Fetching animal table body.")
-    response = requests.get(WIKIPEDIA_ANIMAL_NAMES_URL)
-    soup = BeautifulSoup(response.content, 'html.parser')
-    table = soup.find("table", TABLE_ATTRIBUTES)
-    if not table:
-        logger.error("Could not find animal table.")
-        raise ValueError("Could not find animal table.")
-    return table.find("tbody")
 
 
 def get_column_indices(headers):
@@ -80,39 +61,3 @@ def parse_collateral_adjective(cell):
     adjectives = [adj.strip() for adj in content.split("\n") if adj.strip()]
     logger.info(f"Found adjectives: {adjectives}")
     return adjectives
-
-
-def populate_collateral_map(rows, animal_idx, adj_idx):
-    """
-    Populates the collateral adjective map with animal data.
-    Returns a dictionary mapping each adjective to a list of animals.
-    """
-    logger.info("Populating collateral adjective map.")
-    adj_map: Dict[str, List[Animal]] = {}
-    for row in rows:
-        cells = row.find_all("td") # Find all <td> tags in the row (cells)
-        if not cells:
-            continue
-
-        # Parse collateral adjectives and animals
-        collaterals_adjectives = parse_collateral_adjective(cells[adj_idx])
-        animal = parse_animal(cells, animal_idx)
-
-        # Assign the animal to each collateral adjective
-        for adj in collaterals_adjectives:
-            adj_map.setdefault(adj, []).append(animal)
-        logger.info(f"Added animal {animal.name} to adjectives: {collaterals_adjectives}")
-    return adj_map
-
-
-def collect_collateral_adjectives():
-    """Main function to collect and display collateral adjectives and animals."""
-    logger.info("Collecting collateral adjectives.")
-    tbody = fetch_animal_table_body()
-
-    headers = tbody.find_all("th") # Find all <th> tags in the table
-    animal_idx, adj_idx = get_column_indices(headers) # Get the indices of the required columns
-    rows = tbody.find_all("tr")[1:]  # Skip the first row (header row) and get all <tr> tags (rows)
-
-    adj_map = populate_collateral_map(rows, animal_idx, adj_idx) # Populate the collateral adjective map
-    return adj_map
