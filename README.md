@@ -108,8 +108,3 @@ Below is an example of what the generated HTML table might look like:
 ## 📬 Contact
 
 If you encounter any issues or have suggestions, feel free to reach out or open an issue on the repository.
-
----
-
-💡 **Enjoy exploring the fascinating world of collateral adjectives!** 🌟
-
