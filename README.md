@@ -67,9 +67,10 @@ To run the application and generate the HTML file:
 ## 🧪 Running Tests
 
 To ensure everything is working correctly, run the test suite:
-
     ```bash
+    
     poetry run pytest
+  
 
 ---
 
