@@ -28,7 +28,7 @@ Ensure you have the following installed:
 
    ```bash
    git clone https://github.com/your-repo-name/animals-collateral-adjectives-collector.git
-   cd animals-collateral-adjectives-collector```
+   cd animals-collateral-adjectives-collector
 
 2.	Install dependencies using Poetry:
 
@@ -39,7 +39,9 @@ Ensure you have the following installed:
 ## Usage
 
 To run the application, execute the following command:
-```poetry run animals_collateral_adjectives_collector```
+
+```bash
+poetry run animals_collateral_adjectives_collector
 
 ---
 
