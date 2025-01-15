@@ -99,9 +99,9 @@ Below is an example of what the generated HTML table might look like:
 
 | Collateral Adjective | Animal   | Image                  |
 |-----------------------|----------|------------------------|
-| Lupine               | Wolf     | ![Wolf Image](tmp/wolf.jpg) |
-| Bovine               | Cow      | ![Cow Image](tmp/cow.jpg)  |
-| Feline               | Cat      | ![Cat Image](tmp/cat.jpg)  |
+| Lupine               | Wolf     | ![Wolf Image](https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Eurasian_wolf_2.jpg/440px-Eurasian_wolf_2.jpg) |
+| galline               | Chicken      | ![Chicken Image](https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Male_and_female_chicken_sitting_together.jpg/440px-Male_and_female_chicken_sitting_together.jpg)  |
+| gastropodian               | Snail      | ![Snail Image](https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Snail.jpg/440px-Snail.jpg)  |
 
 ---
 
