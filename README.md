@@ -71,7 +71,7 @@ To run the application and generate the HTML file:
 
    ```bash
    poetry run pytest
-    
+
 ---
 
 ## 📂 Logging
