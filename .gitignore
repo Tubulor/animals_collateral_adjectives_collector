@@ -1,0 +1,13 @@
+# Python
+*.pyc
+__pycache__/
+.venv/
+
+# Project-specific
+tmp/
+
+# Logs
+logs/
+
+# OS files
+.DS_Store

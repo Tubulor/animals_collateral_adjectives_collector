@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collateral Adjectives and Animals</title>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;500&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        /* Global styles */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('https://source.unsplash.com/3840x2160/?landscape,macos') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            padding: 20px;
+            color: darkgray;
+            font-family: 'Merriweather', serif;
+            font-size: 2.5em;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Table styles */
+        table {
+            border-collapse: collapse;
+            margin: 40px auto;
+            width: 90%;
+            max-width: 1200px;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: center;
+            font-size: 1.2em;
+            border-right: 1px solid #ccc; /* Divider between columns */
+        }
+
+        th:last-child, td:last-child {
+            border-right: none; /* No divider for the last column */
+        }
+
+        th {
+            background-color: #4a90e2; /* Light blue header */
+            color: white;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        td {
+            border-bottom: 1px solid #ddd;
+        }
+
+        tr:hover {
+            background-color: rgba(200, 200, 200, 0.3); /* Subtle hover effect */
+        }
+
+        /* Collateral Adjective Styling */
+        .collateral-link {
+            font-family: 'Merriweather', serif;
+            font-size: 1.1em; /* Slightly smaller font size */
+            color: #003366; /* Dark blue color */
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .collateral-link:hover {
+            color: #0055aa; /* Slightly lighter blue on hover */
+        }
+
+        /* Links and images */
+        a {
+            color: #4a90e2;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            max-width: 160px; /* Increased image size */
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            table {
+                font-size: 14px;
+            }
+
+            img {
+                max-width: 120px; /* Adjust image size for smaller screens */
+            }
+
+            .collateral-link {
+                font-size: 0.5em;
+            }
+
+            h1 {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Collateral Adjectives and Animals</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Collateral Adjective</th>
+                <th>Animal Name</th>
+                <th>Image</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for adj, animals in data.items() %}
+                {% for animal in animals %}
+                <tr>
+                    {% if loop.index == 1 %}
+                        <td rowspan="{{ animals | length }}">
+                            {{ adj }}
+                        </td>
+                    {% endif %}
+                    <td>
+                        <a class="collateral-link" href="https://en.wikipedia.org{{ animal.data_url }}" target="_blank">
+                        {{ animal.name }}
+                        </a>
+                    </td>
+                    <td>
+                        {% if animal.image_local_path %}
+                            <img src="{{ animal.image_local_path }}" alt="{{ animal.name }}">
+                        {% else %}
+                            No Image
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
