@@ -114,7 +114,7 @@ You can containerize and run **Animals Collateral Adjectives Collector** using D
 - **Generated HTML File**: The generated HTML file will be available inside the container. To copy it to your local machine, you can use the following command:
 
    ```bash
-   docker cp <container_id>:/app/tmp ./tmp
+   docker cp <container_id>:/app/tmp/. ./tmp
   
  - Replace <container_id> with the ID of the running container, which you can find using:
    
