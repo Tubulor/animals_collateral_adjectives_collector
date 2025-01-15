@@ -89,7 +89,7 @@ This file contains detailed information about:
 
 ## 🐳 Docker Instructions
 
-You can containerize and run the **Animals Collateral Adjectives Collector** using Docker. Follow these steps to build and run the application in a Docker container.
+You can containerize and run **Animals Collateral Adjectives Collector** using Docker. Follow these steps to build and run the application in a Docker container.
 
 ---
 
