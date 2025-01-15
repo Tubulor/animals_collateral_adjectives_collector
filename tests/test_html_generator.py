@@ -11,7 +11,7 @@ class TestRenderAnimalTableWithRealTemplate(unittest.TestCase):
             "feline": [Animal(name="Cat", data_url="/wiki/Cat", image_local_path="tmp/Cat.jpg")],
         }
 
-        tmp_dir = Path("tmp")
+        tmp_dir = Path("test-tmp")
         tmp_dir.mkdir(exist_ok=True) # Create the tmp directory if it doesn't exist
 
         output_file = tmp_dir / "test_output.html"
