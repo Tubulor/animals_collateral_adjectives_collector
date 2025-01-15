@@ -8,7 +8,8 @@
 
 - **Scraping:** Collects collateral adjectives and their associated animals from Wikipedia.
 - **Image Fetching:** Downloads images for each animal directly from Wikipedia.
-- **HTML Table Generation:** Creates a visually appealing HTML file containing:
+- **HTML File Generation:**
+  Creates a visually appealing HTML file containing:
   - Collateral adjectives.
   - Corresponding animals.
   - Animal images.
@@ -44,7 +45,7 @@ Follow these steps to set up the project:
 
 ## 📖 Usage
 
-To run the application and generate the HTML table:
+To run the application and generate the HTML file:
 
 1. Execute the following command:
 
@@ -57,7 +58,7 @@ To run the application and generate the HTML table:
    - Generate an HTML file displaying the results.
 
 3. Check the project directory for:
-   - The generated HTML file.
+   - The generated HTML file in the `tmp/` directory.
    - Images saved in the `tmp/` directory.
 
 
