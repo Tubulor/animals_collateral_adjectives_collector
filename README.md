@@ -37,8 +37,8 @@ Follow these steps to set up the project:
    
 2. **Install dependencies with Poetry:**
 
-```bash
-poetry install
+    ```bash
+    poetry install
 
 ---
 
@@ -67,9 +67,8 @@ To run the application and generate the HTML table:
 
 To ensure everything is working correctly, run the test suite:
 
-```bash
-poetry run pytest
-
+    ```bash
+    poetry run pytest
 
 ---
 
