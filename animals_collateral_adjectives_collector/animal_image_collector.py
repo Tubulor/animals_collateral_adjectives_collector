@@ -89,7 +89,7 @@ def save_image(image_url, animal_name):
             with open(file_path, "wb") as file:
                 for chunk in response.iter_content(1024):
                     file.write(chunk)
-            return str(file_path)
+            return str(filename)
         else:
             logger.error(f"Failed to download image: {image_url} (Status: {response.status_code})")
     except Exception as e:
