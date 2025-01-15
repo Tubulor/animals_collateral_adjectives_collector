@@ -9,7 +9,8 @@
 - **Scraping:** Collects collateral adjectives and their associated animals from Wikipedia.
 - **Image Fetching:** Downloads images for each animal directly from Wikipedia.
 - **HTML File Generation:**
-  Creates a visually appealing HTML file containing:
+
+  Creates an HTML file containing:
   - Collateral adjectives.
   - Corresponding animals.
   - Animal images.
