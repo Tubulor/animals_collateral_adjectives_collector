@@ -87,6 +87,42 @@ This file contains detailed information about:
 
 ---
 
+## 🐳 Docker Instructions
+
+You can containerize and run the **Animals Collateral Adjectives Collector** using Docker. Follow these steps to build and run the application in a Docker container.
+
+---
+
+### 🔨 Build the Docker Image
+
+1. Make sure Docker is installed and running on your machine.
+2. Navigate to the project directory.
+3. Build the Docker image using the following command:
+
+   ```bash
+   docker build -t animals-coll-adj-collector .
+
+### 🚀 Run the Docker Container
+
+- Once the image is built, you can run the application inside a container:
+
+  ```bash
+  docker run -it animals-coll-adj-collector
+  
+### 📂 Outputs in Docker
+
+- **Generated HTML File**: The generated HTML file will be available inside the container. To copy it to your local machine, you can use the following command:
+
+   ```bash
+   docker cp <container_id>:/app/output.html ./output.html
+  
+ - Replace <container_id> with the ID of the running container, which you can find using:
+   
+   ```bash
+   docker ps
+
+---
+
 ## 🖼️ Output
 
 - **HTML File:** Displays a well-structured table of collateral adjectives, associated animals, and their images.
