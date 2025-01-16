@@ -14,6 +14,7 @@ def fetch_animal_images(collapsed_adj_map, max_workers=os.cpu_count() * 2):
     """
     logger.info("Fetching animal images.")
     TMP_DIR.mkdir(parents=True, exist_ok=True) # Create the tmp directory if it doesn't exist
+
     # Create a list of tasks to process
     tasks = [
         (animal, WIKIPEDIA_BASE_URL + animal.data_url)
@@ -60,7 +61,7 @@ def fetch_og_image(url):
         response = requests.get(url, headers=HEADERS)
         if response.status_code == 200:
             soup = BeautifulSoup(response.content, 'html.parser')
-            meta = soup.find("meta", property="og:image") # Find the first meta tag with the property 'og:image'
+            meta = soup.find("meta", property="og:image")
             return meta["content"] if meta else None # Extract the content attribute from the meta tag which contains the image url
     except Exception as e:
         logger.error(f"Error fetching og:image from {url}: {e}")

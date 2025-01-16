@@ -9,7 +9,7 @@ def main():
     - Fetch and save images for each animal.
     - Renders the data into an HTML table using a Jinja2 template and saves it to a file
     """
-    configure_logging() # Configure logging
+    configure_logging()
     collapsed_adj_map = collect_collateral_adjectives()
     fetch_animal_images(collapsed_adj_map)
     render_animal_table(collapsed_adj_map, HTML_OUTPUT_PATH)

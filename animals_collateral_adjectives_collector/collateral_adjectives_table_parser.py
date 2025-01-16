@@ -28,10 +28,10 @@ def parse_animal(cells, animal_idx):
     """
     logger.info("Parsing animal data.")
     cell = cells[animal_idx]
-    link_tag = cell.find("a")  # Find the first <a> tag in the cell
+    link_tag = cell.find("a")
     if link_tag:
-        name = link_tag["title"] # Extract the title attribute
-        link = link_tag["href"]  # Extract the href link
+        name = link_tag["title"] # Extract the title attribute (contains the name)
+        link = link_tag["href"]
         logger.info(f"Found animal: {name}")
         return Animal(name=name, data_url=link)
     else:
@@ -41,20 +41,18 @@ def parse_animal(cells, animal_idx):
 def parse_collateral_adjective(cell):
     """
     Parses collateral adjectives from a <td> tag.
-    Removes <br> tags, ignores all other nested tags, and extracts only plain text.
+    Replace <br> tags with \n, ignores and remover all other nested tags, and extracts only plain text.
     Return a list of adjectives.
     """
     logger.info("Parsing collateral adjectives.")
     # Remove all unwanted tags except <br>
-    for unwanted in cell.find_all(recursive=True):  # Finds all nested tags
-        if unwanted.name != "br":  # Keep <br> tags, remove everything else
+    for unwanted in cell.find_all(recursive=True):
+        if unwanted.name != "br":
             unwanted.decompose()
 
-    # Replace <br> tags with newline characters
     for br in cell.find_all("br"):
         br.replace_with("\n")
 
-    # Extract plain text from the cleaned cell
     content = cell.get_text()
 
     # Split the content by newline characters and remove empty strings

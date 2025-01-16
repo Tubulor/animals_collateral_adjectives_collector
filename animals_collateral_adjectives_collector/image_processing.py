@@ -11,7 +11,7 @@ def process_images(image_url, animal_name):
     """
     logger.info(f"Saving image for {animal_name}")
     try:
-        filename = f"{animal_name.replace(' ', '_')}.jpg" # Replace spaces with underscores in the filename
+        filename = f"{animal_name.replace(' ', '_')}.jpg"
         file_path = TMP_DIR / filename # Create the full path to the file
         response = requests.get(image_url, stream=True, headers=HEADERS)
         if response.status_code == 200:
